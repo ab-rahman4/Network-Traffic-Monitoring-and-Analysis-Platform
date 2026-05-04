@@ -1,0 +1,89 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%); color: #2c3e50; padding: 20px; min-height: 100vh; }
+
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    background: white; padding: 20px 30px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06); margin-bottom: 20px;
+}
+header h1 { color: #2563eb; font-size: 26px; }
+.status { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.dot-stopped { width: 12px; height: 12px; background: #94a3b8; border-radius: 50%; display: inline-block; }
+.dot-running { width: 12px; height: 12px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 1.2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+
+.card {
+    background: white; padding: 20px 25px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06); margin-bottom: 20px;
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.card h2 { color: #1e40af; margin-bottom: 15px; font-size: 18px; }
+.hint { font-size: 12px; color: #64748b; font-weight: normal; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+    padding: 10px 18px; border: none; border-radius: 8px; cursor: pointer;
+    font-size: 14px; font-weight: 600; color: white; text-decoration: none;
+    display: inline-block; transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+.btn-green { background: #22c55e; }
+.btn-red   { background: #ef4444; }
+.btn-blue  { background: #2563eb; }
+.btn-grey  { background: #64748b; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    padding: 15px; border-radius: 10px; text-align: center;
+    border-left: 4px solid #2563eb; transition: transform 0.2s;
+}
+.stat-box:hover { transform: translateY(-3px); }
+.stat-label { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; }
+.stat-value { font-size: 26px; font-weight: 700; color: #1e40af; }
+.stat-value-small { font-size: 14px; font-weight: 600; color: #1e40af; }
+
+.filter-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.filter-row label { display: flex; flex-direction: column; font-size: 13px; color: #475569; gap: 4px; }
+.filter-row select, .filter-row input {
+    padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px;
+    font-size: 14px; background: white;
+}
+.filter-row select:focus, .filter-row input:focus { outline: none; border-color: #2563eb; }
+.filter-info { margin-top: 12px; font-size: 13px; color: #64748b; }
+
+.table-wrap { max-height: 400px; overflow-y: auto; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #2563eb; color: white; padding: 12px; text-align: left; position: sticky; top: 0; }
+td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
+tbody tr { cursor: pointer; transition: background 0.15s; }
+tbody tr.new-row { animation: slideIn 0.4s ease; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+tbody tr:hover { background: #f1f5f9; }
+
+.badge { padding: 3px 10px; border-radius: 12px; color: white; font-size: 12px; font-weight: 600; }
+.badge-tcp  { background: #2563eb; }
+.badge-udp  { background: #22c55e; }
+.badge-icmp { background: #f59e0b; }
+
+#details-content {
+    background: #f8fafc; padding: 15px; border-radius: 8px;
+    font-family: 'Consolas', monospace; font-size: 13px; white-space: pre-wrap;
+    border-left: 4px solid #2563eb;
+}
+
+.log-box {
+    background: #1e293b; color: #a7f3d0; padding: 15px;
+    border-radius: 8px; font-family: 'Consolas', monospace; font-size: 13px;
+    max-height: 200px; overflow-y: auto;
+}
+.log-box div { margin-bottom: 4px; animation: fadeIn 0.3s ease; }
+
+footer { text-align: center; color: #64748b; padding: 20px; font-size: 13px; }

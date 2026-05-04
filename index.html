@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Traffic Monitor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Network Traffic Monitor</h1>
+        <div class="status">
+            <span id="status-dot" class="dot-stopped"></span>
+            <span id="status-text">Stopped</span>
+        </div>
+    </header>
+
+    <section class="card controls">
+        <button id="start-btn" class="btn btn-green">Start Monitoring</button>
+        <button id="stop-btn" class="btn btn-red">Stop Monitoring</button>
+        <button id="clear-btn" class="btn btn-grey">Clear Table</button>
+        <a href="/download/packets" class="btn btn-blue">Download CSV</a>
+        <a href="/download/logs" class="btn btn-blue">Download Logs</a>
+    </section>
+
+    <section class="card">
+        <h2>Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-box"><div class="stat-label">Total Packets</div><div id="stat-total" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">TCP</div><div id="stat-tcp" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">UDP</div><div id="stat-udp" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">ICMP</div><div id="stat-icmp" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">Avg Size (bytes)</div><div id="stat-avg" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">Max Size</div><div id="stat-max" class="stat-value">0</div></div>
+            <div class="stat-box"><div class="stat-label">Top Source</div><div id="stat-top-src" class="stat-value-small">N/A</div></div>
+            <div class="stat-box"><div class="stat-label">Top Destination</div><div id="stat-top-dst" class="stat-value-small">N/A</div></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Filters</h2>
+        <div class="filter-row">
+            <label>Protocol:
+                <select id="filter-protocol">
+                    <option value="ALL">All</option>
+                    <option value="TCP">TCP</option>
+                    <option value="UDP">UDP</option>
+                    <option value="ICMP">ICMP</option>
+                </select>
+            </label>
+            <label>Source IP: <input type="text" id="filter-src" placeholder="e.g. 192.168.1.5"></label>
+            <label>Destination IP: <input type="text" id="filter-dst" placeholder="e.g. 8.8.8.8"></label>
+            <button id="apply-filter" class="btn btn-blue">Apply Filter</button>
+            <button id="reset-filter" class="btn btn-grey">Reset</button>
+        </div>
+        <div id="filter-info" class="filter-info">Showing 0 of 0 packets</div>
+    </section>
+
+    <section class="card">
+        <h2>Captured Packets <span class="hint">(click a row to view header details)</span></h2>
+        <div class="table-wrap">
+            <table id="packet-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Source IP</th>
+                        <th>Destination IP</th>
+                        <th>Protocol</th>
+                        <th>Src Port</th>
+                        <th>Dst Port</th>
+                        <th>Website / Host</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody id="packet-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card" id="details-card" style="display:none;">
+        <h2>Packet Details</h2>
+        <pre id="details-content"></pre>
+    </section>
+
+    <section class="card">
+        <h2>Event Logs</h2>
+        <div id="log-box" class="log-box"></div>
+    </section>
+
+    <footer>Network Traffic Monitoring Platform </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
