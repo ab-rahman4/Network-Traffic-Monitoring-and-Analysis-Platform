@@ -1,0 +1,40 @@
+PORT_TO_SERVICE = {
+    20: "FTP-Data",
+    21: "FTP",
+    22: "SSH",
+    23: "Telnet",
+    25: "SMTP",
+    53: "DNS",
+    67: "DHCP",
+    68: "DHCP",
+    69: "TFTP",
+    80: "HTTP",
+    110: "POP3",
+    119: "NNTP",
+    123: "NTP",
+    143: "IMAP",
+    161: "SNMP",
+    194: "IRC",
+    443: "HTTPS",
+    445: "SMB",
+    465: "SMTPS",
+    514: "Syslog",
+    587: "SMTP-TLS",
+    993: "IMAPS",
+    995: "POP3S",
+    1433: "MSSQL",
+    1521: "Oracle",
+    3306: "MySQL",
+    3389: "RDP",
+    5060: "SIP",
+    5432: "PostgreSQL",
+    5900: "VNC",
+    6379: "Redis",
+    8080: "HTTP-Alt",
+    8443: "HTTPS-Alt",
+    27017: "MongoDB"
+}
+
+def get_service(port):
+    """Return the service name for a given port, or 'Unknown' if not found."""
+    return PORT_TO_SERVICE.get(port, "Unknown")
